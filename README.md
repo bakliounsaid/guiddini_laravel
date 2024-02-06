@@ -12,7 +12,7 @@ composer require vendor/guiddini-laravel
 ## Usage
 ### Initiating a Transaction
 To initiate a transaction with the Guiddini payment API, you can use the initiateTransaction() method provided by the GuiddiniPayment class:
-
+```php
 use GuiddiniLaravel\GuiddiniPayment;
 use GuiddiniLaravel\Exceptions\GuiddiniPaymentException;
 
@@ -23,14 +23,11 @@ try {
 } catch (GuiddiniPaymentException $e) {
     // Handle Guiddini payment exceptions
     echo $e->getMessage();
-    // Optionally, retrieve and handle additional details
-    echo $e->getStatusCode();
-    echo $e->getMessageReturn();
 }
-
+```
 ### Validating a Transaction
 To validate a transaction with the Guiddini payment API, you can use the validateTransaction() method provided by the GuiddiniPayment class:
-
+```php
 use GuiddiniLaravel\GuiddiniPayment;
 use GuiddiniLaravel\Exceptions\GuiddiniPaymentException;
 
@@ -41,9 +38,7 @@ try {
 } catch (GuiddiniPaymentException $e) {
     // Handle Guiddini payment exceptions
     echo $e->getMessage();
-    // Optionally, retrieve and handle additional details
-    echo $e->getStatusCode();
-    echo $e->getMessageReturn();
 }
+```
 ## License
 This package is open-sourced software licensed under the MIT license.
