@@ -1,0 +1,22 @@
+{
+    "name": "saidbaklioun/guiddini_laravel",
+    "description": "GuiddiniLaravel is a Laravel package designed to simplify the integration of the Guiddini payment API into your Laravel applications.",
+    "license": "MIT",
+    "version": "1.0.0",
+    "keywords": ["laravel", "package", "payment"],
+    "autoload": {
+        "psr-4": {
+            "GuiddiniLaravel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Baklioun Essaid",
+            "email": "bakliounessaid25@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
