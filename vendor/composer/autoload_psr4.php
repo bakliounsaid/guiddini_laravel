@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Saidbaklioun\\GuiddiniLaravel\\' => array($baseDir . '/src'),
+    'GuiddiniLaravel\\' => array($baseDir . '/src'),
 );

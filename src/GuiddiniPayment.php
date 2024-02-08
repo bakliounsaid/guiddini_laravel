@@ -1,9 +1,10 @@
 <?php
+
 namespace GuiddiniLaravel;
 
 use Illuminate\Support\Facades\Validator;
 use Exception;
-
+use GuiddiniLaravel\Models\Epayment;
 
 class GuiddiniPayment
 {
@@ -13,14 +14,14 @@ class GuiddiniPayment
             'license' => 'required|string',
             'orderId' => 'required|numeric',
             'total' => 'required|numeric',
-            'language'=>'nullable|in:en,ar,fr',
+            'language' => 'nullable|in:en,ar,fr',
             'returnUrl' => 'required|url',
         ];
 
         // Validate the parameters
         $validator = Validator::make([
             'license' => $license,
-            'orderNumber' => $orderId,
+            'language' => $language,
             'orderId' => $orderId,
             'total' => $total,
             'returnUrl' => $returnUrl,
@@ -33,9 +34,13 @@ class GuiddiniPayment
         }
 
         try {
-            $redirectUrl = "https://test.satim.guiddini.dz/SATIM-WFGWX-YVC9B-4J6C9/".$license ."/cib.php"
-            . "?order_id=$orderId&returnUrl=$returnUrl&total=$total&language=$language";
+            $redirectUrl = "https://test.satim.guiddini.dz/SATIM-WFGWX-YVC9B-4J6C9/" . $license . "/cib.php"
+                . "?order_id=$orderId&returnUrl=$returnUrl&total=$total&language=$language";
             // Handle response, e.g., redirect user to SATIM payment page
+            Epayment::create([
+                'order_id' => $orderId,
+                'status' => '0',
+            ]);
             return redirect()->away($redirectUrl);
         } catch (Exception $e) {
             // Handle API request errors
@@ -46,15 +51,13 @@ class GuiddiniPayment
     public function validateTransaction($license, $orderNumber, $gatewayOrderId, $total, $returnUrl)
     {
         try {
-             $redirectUrl = "https://test.satim.guiddini.dz/SATIM-WFGWX-YVC9B-4J6C9/".$license."/returnCib.php"
-                 . "?gatewayOrderId=$gatewayOrderId&returnUrl=$returnUrl&orderNumber=$orderNumber&total=$total";
-    
-             return redirect()->away($redirectUrl);
-    
+            $redirectUrl = "https://test.satim.guiddini.dz/SATIM-WFGWX-YVC9B-4J6C9/" . $license . "/returnCib.php"
+                . "?gatewayOrderId=$gatewayOrderId&returnUrl=$returnUrl&orderNumber=$orderNumber&total=$total";
+
+            return redirect()->away($redirectUrl);
         } catch (Exception $e) {
             // Handle API request errors
             throw new GuiddiniPaymentException("Error validating transaction: " . $e->getMessage());
         }
     }
 }
-
