@@ -16,7 +16,6 @@ class EpaymentsTable extends Migration
         Schema::create('epayments', function (Blueprint $table) {
             $table->id();
             $table->string('order_id', 10)->nullable();
-            $table->unique('order_id')->nullable();   
             $table->string('order_id_satim')->nullable();
             $table->boolean('status');
             $table->boolean('bool')->nullable();

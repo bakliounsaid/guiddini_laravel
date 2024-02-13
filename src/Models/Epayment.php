@@ -27,13 +27,13 @@ class Epayment extends Model
  
  protected $fillable = [
     'status',// 0 NO PAYEE 1 PAYEE
-    'orderId',//Identifiant de la transaction
-    'orderIdSATIM',
+    'order_id',//Identifiant de la transaction
+    'order_id_satim',
     'bool',// 0: Transaction created. 1: Transaction confirmed.
-    'ErrorCode',
+    'error_code',
     'code',//Numéro d'autorisation
     'total',
-    'MessageReturn',
+    'message_return',
     'date_transaction',
     'date_expiration',
     'file'
