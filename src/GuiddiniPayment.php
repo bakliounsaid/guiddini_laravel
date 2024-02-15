@@ -89,7 +89,7 @@ class GuiddiniPayment
                     'status' => 1,
                     'date_expiration' => $current_time_date_expiration
                 ]);
-               return true; 
+               return $epayment; 
             }
         }
         return false;
