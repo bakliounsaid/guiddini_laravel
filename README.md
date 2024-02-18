@@ -14,31 +14,31 @@ composer require vendor/guiddini-laravel
 To initiate a transaction with the Guiddini payment API, you can use the initiateTransaction() method provided by the GuiddiniPayment class:
 ```php
 use GuiddiniLaravel\GuiddiniPayment;
-use GuiddiniLaravel\Exceptions\GuiddiniPaymentException;
 
-try {
     $guiddiniPayment = new GuiddiniPayment();
-    $response = $guiddiniPayment->initiateTransaction($license, $orderId, $total, $returnUrl, $language);
-    // Handle the response, e.g., redirect user to the payment page
-} catch (GuiddiniPaymentException $e) {
-    // Handle Guiddini payment exceptions
-    echo $e->getMessage();
-}
+    $guiddiniPayment->initiateTransaction($license, $orderId, $total, $returnUrl, $language);
+    //redirect user to the payment page
+
 ```
 ### Validating a Transaction
 To validate a transaction with the Guiddini payment API, you can use the validateTransaction() method provided by the GuiddiniPayment class:
 ```php
 use GuiddiniLaravel\GuiddiniPayment;
-use GuiddiniLaravel\Exceptions\GuiddiniPaymentException;
-
-try {
     $guiddiniPayment = new GuiddiniPayment();
     $response = $guiddiniPayment->validateTransaction($license, $orderNumber, $orderId, $total, $returnUrl);
-    // Handle the response, e.g., process the payment confirmation
-} catch (GuiddiniPaymentException $e) {
-    // Handle Guiddini payment exceptions
-    echo $e->getMessage();
-}
+    // process the payment confirmation
 ```
+### Check Transaction
+```php
+$guiddiniPayment = new GuiddiniPayment();
+$epayment =  $guiddiniPayment->checkResult(request());
+if($epayment->error_code == 0)
+{
+  //success transaction 
+} 
+else
+{
+  //transaction failed 
+}
 ## License
 This package is open-sourced software licensed under the MIT license.
